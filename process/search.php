@@ -5,7 +5,7 @@
         $username = mysqli_real_escape_string($con, $_GET["term"]);
 
         // Query
-        $stmt = $con->prepare("SELECT Id, Username, Picture FROM User WHERE (Username LIKE '%$username%') ORDER BY Username DESC LIMIT 20");
+        $stmt = $con->prepare("SELECT Id, Username, Picture FROM User WHERE (Id != '".$_COOKIE["ID"]."' and Username LIKE '%$username%') ORDER BY Username DESC LIMIT 20");
         $stmt->execute();
         $result = $stmt->get_result();
         $count = $result->num_rows;
